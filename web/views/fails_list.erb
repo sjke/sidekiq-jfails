@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/blitzer/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<header class="row">
+  <div class="col-sm-5">
+    <h3>Job fails</h3>
+  </div>
+</header>
+
+<% if @fails.size > 0 %>
+  <table class="table table-striped table-bordered table-white">
+    <thead>
+      <th style="width: 15%">Date</th>
+      <th style="width: 25%">Worker</th>
+      <th style="width: 30%">Exception</th>
+      <th style="width: 15%">Queue</th>
+      <th style="width: 15%">Args</th>
+      <th style="width: 15%">Details</th>
+    </thead>
+    <% @fails.each do |fail| %>
+      <tr>
+        <td><%= relative_time Time.parse(fail['date']) %></td>
+        <td><%= fail['worker'] %></td>
+        <td><%= h fail['exception'] %>: <%= h fail['error'] %></td>
+        <td><%= fail['queue'] %></td>
+        <td><%= fail['args'] %></td>
+        <td><a class='details' href="javascript:void(0);" data-details="<%= fail['backtrace'].join('</td></tr><tr><td>') %>">Show</a></td>
+      </tr>
+    <% end %>
+  </table>
+  <div id="dialog-modal" title="Fail details">
+    <div id="code" style="max-height: 350px;"></div>
+  </div>
+  <script>
+    $(function() {
+        $('.details').on('click', function() {
+            var dialog = $('#dialog-modal');
+            var table = '<table class="table table-striped table-bordered table-white"><tr><td>'
+                        + $('.details').attr('data-details')
+                        + '</td></tr></table>';
+            dialog.find('#code').html(table);
+            dialog.dialog({ width: '1200px', modal: true });
+        })
+    })
+  </script>
+  <div class="row">
+    <div class="col-sm-8">
+      <form class="form-inline" action="<%= "#{root_path}jfails/reset" %>" method="post" style="margin: 20px 0">
+        <input type="hidden" name="counter" value="true" />
+        <input class="btn btn-danger btn-small" type="submit" name="delete" value="Clear All" />
+      </form>
+    </div>
+    <% if @total_size > @count %>
+        <div class="col-sm-4">
+          <%= erb :_paging, :locals => { :url => "#{root_path}jfails#@name" } %>
+        </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-success">No failed jobs found.</div>
+<% end %>
