@@ -16,7 +16,7 @@ module Sidekiq
   end
 
   def self.jfails_max_count
-    return 10000 unless @fails_logger_max_count
+    return 10000 unless @jfails_max_count
     @jfails_max_count
   end
 
@@ -28,7 +28,7 @@ module Sidekiq
   end
 
   def self.fails_per_page
-    return 10 unless @fails_logger_max_count
+    return 10 unless @fails_per_page
     @fails_per_page
   end
 

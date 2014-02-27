@@ -7,13 +7,11 @@ module Sidekiq
       def call(worker, msg, queue)
         self.msg = msg
         yield
-      rescue Sidekiq::Shutdown
-        raise
       rescue Exception => e
         data = {
             :date => Time.now.utc,
             :exception => e.class.to_s,
-            :args => msg['args'].join(', '),
+            :args => msg['args'],#.join(', '),
             :error => e.message,
             :backtrace => e.backtrace,
             :worker => msg['class'],
