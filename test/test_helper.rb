@@ -6,7 +6,7 @@ require "rack/test"
 
 require "celluloid"
 require "sidekiq"
-require "sidekiq-failures"
+require "sidekiq-jfails"
 require "sidekiq/processor"
 require "sidekiq/fetch"
 require "sidekiq/cli"

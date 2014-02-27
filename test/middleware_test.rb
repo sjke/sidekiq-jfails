@@ -1,11 +1,8 @@
 require 'test_helper'
-require 'support'
 
 module Sidekiq
   module Jfails
-    include Support
-    
-    describe Middleware do
+    describe 'Middleware' do
 
       before do
         Celluloid.boot
@@ -35,14 +32,14 @@ module Sidekiq
         assert_equal 10000, Sidekiq.failures_max_count 
       end
 
-      it 'revert jfails_max_count by default when this set nil' do
-        assert_equal 10000, Sidekiq.jfails_max_count
+      it 'revert fails_per_page by default when this set nil' do
+        assert_equal 10, Sidekiq.fails_per_page
 
-       	Sidekiq.jfails_max_count = 10
-       	assert_equal 10, Sidekiq.jfails_max_count
+       	Sidekiq.jfails_max_count = 1
+       	assert_equal 1, Sidekiq.fails_per_page
 
 		Sidekiq.jfails_max_count = nil
-        assert_equal 10000, Sidekiq.failures_max_count 
+        assert_equal 10, Sidekiq.fails_per_page 
       end
 
       it 'records job fails by default jfails_max_count' do
@@ -84,8 +81,16 @@ module Sidekiq
       end
 
       def jfails_count
-        Sidekiq.redis { |conn|conn.llen('failed') } || 0
+        Sidekiq.redis { |redis| redis.llen('failed') } || 0
       end
+
+      class MockWorker
+	    include Sidekiq::Worker
+
+	    def perform(args)
+	      raise 'Test error'
+		end
+	  end
     end
   end
 end

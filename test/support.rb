@@ -1,5 +1,4 @@
-module Support do
-
+module Support
   class MockWorker
     include Sidekiq::Worker
 
