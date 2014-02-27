@@ -5,6 +5,3 @@ services:
 rvm:
   - 1.9.3
   - 2.0.0
-addons:
- code_climate:
-   repo_token: 8bfe64224e9d80206c588a1c70748353f3920efc5e3a3e9113b5e1c465d29327
