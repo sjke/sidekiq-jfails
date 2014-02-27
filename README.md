@@ -1,4 +1,4 @@
-# Sidekiq::Jfails [![Build Status](https://travis-ci.org/sjke/sidekiq-jfails.png?branch=master)](https://travis-ci.org/sjke/sidekiq-jfails) [![Code Climate](https://codeclimate.com/repos/530ee9fde30ba068e0000d31/badges/d041c9480e3db6b2072b/gpa.png)](https://codeclimate.com/repos/530ee9fde30ba068e0000d31/feed)
+# Sidekiq::Jfails [![Gem Version](https://badge.fury.io/rb/sidekiq-jfails.png)](http://badge.fury.io/rb/sidekiq-jfails) [![Build Status](https://travis-ci.org/sjke/sidekiq-jfails.png?branch=master)](https://travis-ci.org/sjke/sidekiq-jfails) [![Code Climate](https://codeclimate.com/repos/530ee9fde30ba068e0000d31/badges/d041c9480e3db6b2072b/gpa.png)](https://codeclimate.com/repos/530ee9fde30ba068e0000d31/feed)
 
 Keeps track of fails in Sidekiq jobs in web and provides detailed information on the fail
 ## Installation
@@ -6,7 +6,9 @@ Keeps track of fails in Sidekiq jobs in web and provides detailed information on
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sidekiq-jfails', git: 'git@github.com:sjke/sidekiq-jfails.git', tag: '0.0.1'
+gem 'sidekiq-jfails', '~> 0.0.2'
+# OR
+gem 'sidekiq-jfails', git: 'git://github.com/sjke/sidekiq-jfails.git', tag: '0.0.2'
 ```
 ## Usage
 
