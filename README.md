@@ -1,4 +1,4 @@
-# Sidekiq::Jfails
+# Sidekiq::Jfails [![Build Status](https://travis-ci.org/sjke/sidekiq-jfails.png?branch=master)](https://travis-ci.org/sjke/sidekiq-jfails) [![Code Climate](https://codeclimate.com/repos/530ee9fde30ba068e0000d31/badges/d041c9480e3db6b2072b/gpa.png)](https://codeclimate.com/repos/530ee9fde30ba068e0000d31/feed)
 
 Keeps track of fails in Sidekiq jobs in web and provides detailed information on the fail
 ## Installation
