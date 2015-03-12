@@ -1,0 +1,6 @@
+script:
+  - mkdir -p /tmp/bundle
+  - sudo chown -R ubuntu:ubuntu /tmp/bundle
+  - bundle install --path /tmp/bundle
+cache:
+  - /tmp/bundle
